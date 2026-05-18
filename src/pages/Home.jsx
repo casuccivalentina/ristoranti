@@ -3,11 +3,12 @@ import restaurants from "../data/restaurants"
 
 export default function Home() {
   return (
-    <main className="max-w-7xl mx-auto px-5 pt-16 pb-4 overflow-hidden">
+    <main className="max-w-7xl mx-auto px-5 pt-16 pb-4 overflow-x-hidden">
       
       {/* Background Ambient Glow */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-amber-600/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-purple-900/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-[-10%] left-0 w-[40%] h-[40%] bg-amber-600/10 rounded-full blur-[80px] pointer-events-none" />
+
+      <div className="absolute bottom-[-10%] right-0 w-[40%] h-[40%] bg-purple-900/10 rounded-full blur-[80px] pointer-events-none" />
 
       <section
         id="ristoranti"
