@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #050505;
+  color: white;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-600;
+  }
+  
+  .glass-panel {
+    @apply bg-black/20 backdrop-blur-xl border border-white/5 shadow-[0_4px_16px_0_rgba(0,0,0,0.1)];
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  
+  /* Mobile-first: smaller fonts */
+  .text-hero-mobile {
+    @apply text-2xl;
+  }
+  .text-hero-desktop {
+    @apply md:text-4xl;
+  }
+  
+  .text-title-mobile {
+    @apply text-xl;
+  }
+  .text-title-desktop {
+    @apply md:text-3xl;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
