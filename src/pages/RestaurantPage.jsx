@@ -138,20 +138,6 @@ export default function RestaurantPage() {
         </div>
       </section>
 
-      {/* Gallery */}
-      {restaurant.gallery && (
-        <section className="px-4 md:px-6 py-8 max-w-4xl mx-auto">
-          <p className="uppercase tracking-[3px] text-amber-500 font-medium text-xs mb-4">Galleria</p>
-          <Swiper modules={[Pagination]} spaceBetween={10} slidesPerView={1} pagination={{ clickable: true }} className="w-full">
-            {restaurant.gallery.map((img, index) => (
-              <SwiperSlide key={index}>
-                <img src={img} alt={`${restaurant.name} ${index + 1}`} className="w-full h-100 md:h-80 object-cover rounded-xl" />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </section>
-      )}
-
       {/* Location */}
       <section className="px-4 md:px-6 py-8 max-w-4xl mx-auto">
         <div className="bg-black/20 rounded-2xl p-6 border border-white/5">
@@ -163,7 +149,60 @@ export default function RestaurantPage() {
         </div>
       </section>
 
-      {/* Specialità */}
+      {/* STORY VIDEO */}
+
+      {restaurant.storyVideo && (
+
+        <section className="py-6">
+
+          <div className="relative h-[70vh] overflow-hidden">
+
+            {/* VIDEO */}
+
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+
+            <source
+              src={restaurant.storyVideo}
+              type="video/mp4"
+            />
+
+          </video>
+
+          {/* OVERLAY */}
+
+          <div className="absolute inset-0 bg-black/45" />
+
+          {/* CONTENT */}
+
+          <div className="relative z-10 h-full flex items-end px-6 pb-10">
+
+            <div className="max-w-md">
+
+              <p className="uppercase tracking-[3px] text-amber-400 text-xs mb-4">
+                Experience
+              </p>
+
+              <h2 className="text-3xl md:text-5xl font-semibold leading-tight text-white">
+                {restaurant.storyText}
+              </h2>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    )}
+
+     {/* Specialità */}
       <section className="px-4 md:px-6 py-8 max-w-4xl mx-auto">
         <div className="mb-6">
           <p className="uppercase tracking-[3px] text-amber-500 font-medium text-xs mb-2">Signature</p>
@@ -178,6 +217,20 @@ export default function RestaurantPage() {
           ))}
         </div>
       </section>
+
+      {/* Gallery */}
+      {restaurant.gallery && (
+        <section className="px-4 md:px-6 py-8 max-w-4xl mx-auto">
+          <p className="uppercase tracking-[3px] text-amber-500 font-medium text-xs mb-4">Galleria</p>
+          <Swiper modules={[Pagination]} spaceBetween={10} slidesPerView={1} pagination={{ clickable: true }} className="w-full">
+            {restaurant.gallery.map((img, index) => (
+              <SwiperSlide key={index}>
+                <img src={img} alt={`${restaurant.name} ${index + 1}`} className="w-full h-100 md:h-80 object-cover rounded-xl" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </section>
+      )}
 
       {/* Other Restaurants */}
       <section className="py-12 px-4 md:px-6 max-w-4xl mx-auto">
@@ -195,7 +248,7 @@ export default function RestaurantPage() {
                 playsInline
                 className="absolute inset-0 w-full h-full object-cover"
               >
-                <source src={restaurant.video} type="video/mp4" />
+                <source src={r.video} type="video/mp4" />
               </video>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
               <div className="relative z-10 h-full flex items-end p-4">
