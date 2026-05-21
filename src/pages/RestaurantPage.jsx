@@ -30,6 +30,7 @@ export default function RestaurantPage() {
       {/* Hero */}
       <section className="relative h-[65vh] md:h-[75vh] flex items-end animate-fade-in rounded-b-2xl overflow-hidden mx-2 md:mx-4 mt-2">
         <video
+          key={restaurant.video}
           autoPlay
           muted
           loop
@@ -160,6 +161,7 @@ export default function RestaurantPage() {
             {/* VIDEO */}
 
           <video
+            key={restaurant.video}
             autoPlay
             muted
             loop
@@ -242,6 +244,7 @@ export default function RestaurantPage() {
           {restaurants.filter((r) => r.slug !== slug).map((r) => (
             <Link key={r.id} to={`/${r.slug}`} className="group relative h-40 md:h-48 rounded-xl overflow-hidden block">
               <video
+                key={r.video}
                 autoPlay
                 muted
                 loop

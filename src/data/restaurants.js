@@ -30,15 +30,15 @@ const restaurants = [
     video: "/doppiozero/locale.mp4",
     gallery: [
       "doppiozero/filetto.jpeg",
-      "/doppiozero/locale.jpeg",
+      "doppiozero/locale.jpeg",
       "doppiozero/bottiglie.jpeg",
-      "doppiozero/location.jpeg",
       "doppiozero/pizzatart.png",
+      "doppiozero/location.jpeg",
     ],
     address: "Str. del Recioto, 11, 37024 Negrar di Valpolicella VR",
     phone: "+39 045 6319169",
     whatsapp: "390456319169",
-    menuPdf: "https://menu-qr-rosy.vercel.app/",
+    menuPdf: "menu/DoppiozeroMenu.pdf",
     googleUrl: "https://www.google.com/search?q=doppiozero+negrar+verona",
     mapsUrl: "https://www.google.com/maps/dir//Doppio+Zero+Ristorante+Pizzeria,+Str.+del+Recioto,+11,+37024+Negrar+di+Valpolicella+VR/@45.4426624,10.9805568,14z/data=!4m8!4m7!1m0!1m5!1m1!1s0x4781e34339df4c89:0x76a0194f64cc77ba!2m2!1d10.9408104!2d45.526511?entry=ttu&g_ep=EgoyMDI2MDUxMS4wIKXMDSoASAFQAw%3D%3D",
     instagram: "https://www.instagram.com/doppiozeronegrar/",
@@ -50,8 +50,6 @@ const restaurants = [
             Sab | 18.30 - 22.30 \n
             Dom | 18:30 - 22:30`,
     menu: ["Tagliata", "Risotto all'amarone", "Pizza gourmet", "Formaggi e salumi"],
-    storyVideo: "/vecchialira/pizze.mp4",
-    storyText: "il calore del forno, il ritmo della cucina",
   },
   {
     id: 3,
