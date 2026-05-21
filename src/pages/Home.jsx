@@ -3,7 +3,7 @@ import restaurants from "../data/restaurants"
 
 export default function Home() {
   return (
-    <main className="max-w-7xl mx-auto px-5 pt-16 pb-4 overflow-x-hidden">
+    <main className="max-w-7xl mx-auto px-5 pt-1 pb-4 overflow-x-hidden">
       
       {/* Background Ambient Glow */}
       <div className="absolute top-[-10%] left-0 w-[40%] h-[40%] bg-amber-600/10 rounded-full blur-[80px] pointer-events-none" />
