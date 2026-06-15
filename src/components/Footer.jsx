@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="max-w-4xl mx-auto px-4 md:px-6 py-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h2 className="text-2xl font-bold mb-4 text-gradient inline-block">Verona Restaurants</h2>
+            <h2 className="text-2xl font-bold mb-4 text-gradient inline-block">Le Tre Tavole</h2>
             <p className="text-gray-400 font-light leading-relaxed max-w-sm text-sm">Tre esperienze culinarie uniche nel cuore di Verona.</p>
           </div>
           <div>
