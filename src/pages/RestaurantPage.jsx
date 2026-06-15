@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { supabase } from "../lib/supabase"
 
 export default function RestaurantPage() {
   const { slug } = useParams();
@@ -16,6 +17,37 @@ export default function RestaurantPage() {
   }, [slug]);
 
   const restaurant = restaurants.find((r) => r.slug === slug);
+
+  const handleWhatsAppClick = async () => {
+
+    if (!accepted) {
+      alert("Devi accettare il consenso privacy.")
+      return
+    }
+
+    const { error } = await supabase
+      .from("whatsapp_consents")
+      .insert([
+        {
+          restaurant: restaurant.name,
+          consent: true,
+          policy_text:
+            "Consenso a ricevere comunicazioni promozionali tramite WhatsApp",
+          user_agent: navigator.userAgent,
+        },
+      ])
+
+    if (error) {
+      console.error(error)
+      alert("Errore durante la registrazione del consenso.")
+      return
+    }
+
+    window.open(
+      `https://wa.me/${restaurant.whatsapp}?text=Ciao,%20vorrei%20prenotare%20un%20tavolo%20da%20${restaurant.name}`,
+      "_blank"
+    )
+  }
 
   if (!restaurant) {
     return (
@@ -96,22 +128,8 @@ export default function RestaurantPage() {
 
               </label>
 
-              <a
-                href={
-                  accepted
-                    ? `https://wa.me/${restaurant.whatsapp}?text=Ciao,%20vorrei%20prenotare%20un%20tavolo%20da%20${restaurant.name}`
-                    : "#"
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => {
-
-                  if (!accepted) {
-                    e.preventDefault()
-                    alert("Devi accettare il consenso privacy.")
-                  }
-
-                }}
+              <button
+                onClick={handleWhatsAppClick}
                 className={`block w-full text-center py-4 rounded-full font-semibold text-base transition-all duration-300 ${
                   accepted
                     ? "bg-green-500 text-white hover:bg-green-400"
@@ -119,7 +137,7 @@ export default function RestaurantPage() {
                 }`}
               >
                 Prenota su WhatsApp
-              </a>
+              </button>
 
             </div>
             ) : (

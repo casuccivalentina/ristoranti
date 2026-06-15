@@ -34,7 +34,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="border-t border-white/5 mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-light">
+        <div className="border-t border-white/5 mt-8 pt-6 grid grid-cols-1 md:grid-cols-5 gap-4 text-center text-xs text-gray-500 font-light">
           <a
             href="https://www.iubenda.com/privacy-policy/22647875"
             className="iubenda-white iubenda-noiframe iubenda-embed"
@@ -48,8 +48,8 @@ export default function Footer() {
           >
             Cookie Policy
           </a>
-          <p>VALFIORITA S.R.L. Viale Postumia, 73 - 37069 Villafranca di Verona P.IVA 04975150238 </p>
           <p>© 2026 La Greca</p>
+          <p>VALFIORITA S.R.L. Viale Postumia, 73 - 37069 Villafranca di Verona P.IVA 04975150238 </p>
           <p>Designed By Casucci Valentina</p>
         </div>
       </div>
