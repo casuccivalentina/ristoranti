@@ -5,7 +5,6 @@ import Footer from "./components/Footer"
 
 import Home from "./pages/Home"
 import RestaurantPage from "./pages/RestaurantPage"
-import PrivacyPolicy from "./pages/PrivacyPolicy"
 
 export default function App() {
   return (
@@ -20,11 +19,6 @@ export default function App() {
           <Route
             path="/"
             element={<Home />}
-          />
-
-          <Route
-            path="/privacy-policy"
-            element={<PrivacyPolicy />}
           />
 
           <Route
