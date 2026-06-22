@@ -17,7 +17,7 @@ export default function Home() {
         <div className="text-center mb-16 md:mb-24 animate-slide-up px-4">
           
           <p className="uppercase tracking-[6px] text-amber-500/80 text-xs md:text-sm font-medium mb-4">
-            Verona
+            Scaligera food
           </p>
 
           <h1 className="text-hero-mobile text-hero-dekstop font-medium mb-6 leading-tight tracking-tight">

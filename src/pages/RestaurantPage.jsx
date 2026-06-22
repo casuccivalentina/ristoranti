@@ -158,15 +158,55 @@ export default function RestaurantPage() {
       </section>
 
       {/* Location */}
-      <section className="px-4 md:px-6 py-8 max-w-4xl mx-auto">
-        <div className="bg-black/20 rounded-2xl p-6 border border-white/5">
-          <p className="uppercase tracking-[3px] text-amber-500 font-medium text-xs mb-2">Location</p>
-          <h3 className="text-lg font-medium mb-2">{restaurant.address}</h3>
-          <a href={restaurant.mapsUrl} target="_blank" rel="noopener noreferrer" className="inline-block bg-white text-black py-2 px-6 rounded-full font-medium text-sm transition-transform duration-300 hover:scale-105">
-            Apri Google Maps
-          </a>
-        </div>
-      </section>
+
+{/* Location */}
+
+<section className="px-4 md:px-6 py-8 max-w-4xl mx-auto">
+
+  <div className="bg-black/20 rounded-2xl overflow-hidden border border-white/5">
+
+    <div className="flex">
+
+      {/* TESTO */}
+
+      <div className="w-[60%] p-5 flex flex-col justify-center">
+
+        <p className="uppercase tracking-[3px] text-amber-500 font-medium text-xs mb-2">
+          Location
+        </p>
+
+        <h3 className="text-sm md:text-lg font-medium mb-4">
+          {restaurant.address}
+        </h3>
+
+        <a
+          href={restaurant.mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-white text-black py-2 px-4 rounded-full font-medium text-xs md:text-sm w-fit"
+        >
+          Apri Google Maps
+        </a>
+
+      </div>
+
+      {/* FOTO */}
+
+      <div className="w-[40%]">
+
+        <img
+          src={restaurant.locationImage}
+          alt={restaurant.name}
+          className="w-full h-full object-cover"
+        />
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
       {/* STORY VIDEO */}
 
