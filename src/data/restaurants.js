@@ -61,7 +61,7 @@ const restaurants = [
     slug: "la-vecchia-lira",
     name: "La Vecchia Lira",
     description: "San Massimo Verona",
-    video: "/vecchialira/video.mp4",
+    video: "/vecchialira/polenta.mp4",
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
     gallery: [
       "vecchialira/pizzacapr.png",
