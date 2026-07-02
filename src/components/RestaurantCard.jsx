@@ -12,7 +12,8 @@ export default function RestaurantCard({ restaurant }) {
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        preload="metadata"
+        className="absolute inset-0 w-full h-full object-cover bg-black"
       >
 
         <source

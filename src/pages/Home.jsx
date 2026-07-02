@@ -20,7 +20,7 @@ export default function Home() {
             Scaligera food
           </p>
 
-          <h1 className="text-hero-mobile text-hero-dekstop font-medium mb-6 leading-tight tracking-tight">
+          <h1 className="text-hero-mobile text-hero-desktop font-medium mb-6 leading-tight tracking-tight">
             Tre esperienze diverse,<br />
             un’unica <span className="text-gradient">passione</span> per la cucina.
           </h1>

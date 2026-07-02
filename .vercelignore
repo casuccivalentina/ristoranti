@@ -1,0 +1,7 @@
+public/**/*.jpg
+public/**/*.jpeg
+public/**/*.png
+public/**/*.JPG
+public/vecchialira/video.mp4
+
+!public/optimized/**/*.webp

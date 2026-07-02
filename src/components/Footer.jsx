@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import restaurants from "../data/restaurants";
 
 export default function Footer() {

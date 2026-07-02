@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { supabase } from "../lib/supabase"
 
 export default function RestaurantPage() {
   const { slug } = useParams();
@@ -18,6 +17,11 @@ export default function RestaurantPage() {
 
   const restaurant = restaurants.find((r) => r.slug === slug);
 
+  const getWhatsAppUrl = () =>
+    `https://wa.me/${restaurant.whatsapp}?text=${encodeURIComponent(
+      `Ciao, vorrei prenotare un tavolo da ${restaurant.name}`
+    )}`
+
   const handleWhatsAppClick = async () => {
 
     if (!accepted) {
@@ -25,28 +29,7 @@ export default function RestaurantPage() {
       return
     }
 
-    const { error } = await supabase
-      .from("whatsapp_consents")
-      .insert([
-        {
-          restaurant: restaurant.name,
-          consent: true,
-          policy_text:
-            "Consenso a ricevere comunicazioni promozionali tramite WhatsApp",
-          user_agent: navigator.userAgent,
-        },
-      ])
-
-    if (error) {
-      console.error(error)
-      alert("Errore durante la registrazione del consenso.")
-      return
-    }
-
-    window.open(
-      `https://wa.me/${restaurant.whatsapp}?text=Ciao,%20vorrei%20prenotare%20un%20tavolo%20da%20${restaurant.name}`,
-      "_blank"
-    )
+    window.open(getWhatsAppUrl(), "_blank")
   }
 
   if (!restaurant) {
@@ -67,7 +50,9 @@ export default function RestaurantPage() {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          poster={restaurant.gallery?.[0]}
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover bg-black"
         >
           <source src={restaurant.video} type="video/mp4" />
         </video>
@@ -197,6 +182,8 @@ export default function RestaurantPage() {
         <img
           src={restaurant.locationImage}
           alt={restaurant.name}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover"
         />
 
@@ -224,7 +211,8 @@ export default function RestaurantPage() {
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+            preload="metadata"
+            className="absolute inset-0 w-full h-full object-cover bg-black"
           >
 
             <source
@@ -285,7 +273,13 @@ export default function RestaurantPage() {
           <Swiper modules={[Pagination]} spaceBetween={10} slidesPerView={1} pagination={{ clickable: true }} className="w-full">
             {restaurant.gallery.map((img, index) => (
               <SwiperSlide key={index}>
-                <img src={img} alt={`${restaurant.name} ${index + 1}`} className="w-full h-100 md:h-80 object-cover rounded-xl" />
+                <img
+                  src={img}
+                  alt={`${restaurant.name} ${index + 1}`}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                  className="w-full h-100 md:h-80 object-cover rounded-xl"
+                />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -307,7 +301,8 @@ export default function RestaurantPage() {
                 muted
                 loop
                 playsInline
-                className="absolute inset-0 w-full h-full object-cover"
+                preload="metadata"
+                className="absolute inset-0 w-full h-full object-cover bg-black"
               >
                 <source src={r.video} type="video/mp4" />
               </video>
