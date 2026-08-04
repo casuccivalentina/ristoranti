@@ -44,6 +44,7 @@ const restaurants = [
     instagram: "https://www.instagram.com/doppiozeronegrar/",
     facebook: "https://www.facebook.com/p/Pizzeria-Doppio-Zero-61567071104880/",
     tiktok: "https://www.tiktok.com/@doppiozero_official",
+    temporaryClosure: "Temporaneamente chiuso per ferie fino a settembre.",
     hours: `Lun | 12:00 - 14:30 · 18:30 - 22:30 \n
             Mar | 18:30 - 22:30 \n
             Mer - Ven | 12:00 - 14:30 · 18:30 - 22:30 \n

@@ -84,7 +84,14 @@ export default function RestaurantPage() {
           </div>
           <div>
             <p className="uppercase tracking-[3px] text-amber-600/80 font-medium text-xs mb-2">Orari</p>
-            <p className="text-sm whitespace-pre-line leading-relaxed font-light text-gray-300">{restaurant.hours}</p>
+            {restaurant.temporaryClosure && (
+              <p className="rounded-xl border border-red-500/50 bg-red-600 px-4 py-4 text-sm font-semibold text-white shadow-lg shadow-red-950/30">
+                {restaurant.temporaryClosure}
+              </p>
+            )}
+            {!restaurant.temporaryClosure && (
+              <p className="text-sm whitespace-pre-line leading-relaxed font-light text-gray-300">{restaurant.hours}</p>
+            )}
           </div>
           {(restaurant.instagram || restaurant.facebook || restaurant.tiktok) && (
             <div className="flex items-end justify-right gap-4">
