@@ -12,6 +12,7 @@ export default function RestaurantCard({ restaurant }) {
         muted
         loop
         playsInline
+        poster={restaurant.cardPoster ?? restaurant.gallery?.[0]}
         preload="metadata"
         className="absolute inset-0 w-full h-full object-cover bg-black"
       >
@@ -29,7 +30,7 @@ export default function RestaurantCard({ restaurant }) {
 
         <div>
 
-          <p className="uppercase tracking-[3px] text-gray-300 text-[9px] mb-1">
+          <p className="font-display uppercase tracking-[3px] text-gray-300 text-[9px] mb-1">
             {restaurant.description}
           </p>
 

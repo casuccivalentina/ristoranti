@@ -3,8 +3,9 @@ const restaurants = [
     id: 1,
     slug: "la-greca",
     name: "La Greca",
-    description: "Villafranca Verona",
+    description: "Villafranca",
     video: "/lagreca/video.mp4",
+    cardPoster: "/lagreca/CGreca.jpeg",
     gallery: [
       "/optimized/lagreca/pesce.webp",
       "/optimized/lagreca/paella.webp",
@@ -23,41 +24,12 @@ const restaurants = [
     storyText: "Il nostro forno a legna, ineguagliabile, è il segreto della nostra tradizione.",
   },
   {
-    id: 2,
-    slug: "doppiozero",
-    name: "DoppioZero",
-    description: "Negrar di Valpolicella Verona",
-    video: "/doppiozero/estiva.mp4",
-    gallery: [
-      "/optimized/doppiozero/filetto.webp",
-      "/optimized/doppiozero/Pizzaviola.webp",
-      "/optimized/doppiozero/vinop.webp",
-      "/optimized/doppiozero/mela.webp",
-    ],
-    address: "Str. del Recioto, 11, 37024 Negrar di Valpolicella VR",
-    phone: "+39 045 6319169",
-    whatsapp: "390456319169",
-    menuPdf: "menu/DoppiozeroMenu.pdf",
-    googleUrl: "https://www.google.com/search?q=doppiozero+negrar+verona",
-    mapsUrl: "https://www.google.com/maps/dir//Doppio+Zero+Ristorante+Pizzeria,+Str.+del+Recioto,+11,+37024+Negrar+di+Valpolicella+VR/@45.4426624,10.9805568,14z/data=!4m8!4m7!1m0!1m5!1m1!1s0x4781e34339df4c89:0x76a0194f64cc77ba!2m2!1d10.9408104!2d45.526511?entry=ttu&g_ep=EgoyMDI2MDUxMS4wIKXMDSoASAFQAw%3D%3D",
-    locationImage: "/optimized/doppiozero/pizzaiolo-location.webp",
-    instagram: "https://www.instagram.com/doppiozeronegrar/",
-    facebook: "https://www.facebook.com/p/Pizzeria-Doppio-Zero-61567071104880/",
-    tiktok: "https://www.tiktok.com/@doppiozero_official",
-    temporaryClosure: "Temporaneamente chiuso per ferie fino a settembre.",
-    hours: `Lun | 12:00 - 14:30 · 18:30 - 22:30 \n
-            Mar | 18:30 - 22:30 \n
-            Mer - Ven | 12:00 - 14:30 · 18:30 - 22:30 \n
-            Sab | 18.30 - 22.30 \n
-            Dom | 18:30 - 22:30`,
-    menu: ["Carne", "Pizza gourmet", "Formaggi e salumi"],
-  },
-  {
     id: 3,
     slug: "la-vecchia-lira",
     name: "La Vecchia Lira",
-    description: "San Massimo Verona",
-    video: "/vecchialira/polenta.mp4",
+    description: "Verona",
+    video: "/vecchialira/40cm.mp4",
+    cardPoster: "/vecchialira/CVL.jpeg",
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
     gallery: [
       "/optimized/vecchialira/pizzacapr.webp",

@@ -7,8 +7,8 @@ export default function Footer() {
       <div className="max-w-4xl mx-auto px-4 md:px-6 py-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h2 className="text-2xl font-bold mb-4 text-gradient inline-block">Scaligera Food</h2>
-            <p className="text-gray-400 font-light leading-relaxed max-w-sm text-sm">Tre esperienze culinarie uniche nel cuore di Verona.</p>
+            <h2 className="font-display text-2xl font-bold mb-4 text-gradient inline-block">Scaligera Food</h2>
+            <p className="text-gray-400 font-light leading-relaxed max-w-sm text-sm">Due esperienze culinarie uniche nel cuore di Verona.</p>
           </div>
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-[3px] text-amber-500 mb-4">I nostri ristoranti</h3>
@@ -26,13 +26,25 @@ export default function Footer() {
               <p>Verona, Italia</p>
               <a href="mailto:info@pizzerialagreca.it" className="block hover:text-white transition-colors w-fit">info@pizzerialagreca.it</a>
               <div className="flex flex-col gap-2">
-                <a href="tel:+390456319169" className="hover:text-white transition-colors w-fit">Doppio Zero · +39 045 6319169</a>
-                <a href="tel:+390456304499" className="hover:text-white transition-colors w-fit">La Greca · +39 045 6304499</a>
-                <a href="tel:+390458901188" className="hover:text-white transition-colors w-fit">La Vecchia Lira · +39 045 8901188</a>
+                <a href="tel:+390456304499" className="hover:text-white transition-colors w-fit"><span className="font-display">La Greca</span> · +39 045 6304499</a>
+                <a href="tel:+390458901188" className="hover:text-white transition-colors w-fit"><span className="font-display">La Vecchia Lira</span> · +39 045 8901188</a>
               </div>
             </div>
           </div>
         </div>
+
+        <div className="mt-10 overflow-hidden rounded-2xl">
+          <iframe
+            src="https://www.google.com/maps/d/u/0/embed?mid=16-b_onaBNV8lBaG4iIuMXFroR4wTD5g&ehbc=2E312F"
+            title="Mappa dei ristoranti Scaligera Food"
+            width="640"
+            height="480"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="h-[320px] w-full border-0 md:h-[420px]"
+          />
+        </div>
+
         <div className="border-t border-white/5 mt-8 pt-6 grid grid-cols-1 md:grid-cols-5 gap-4 text-center text-xs text-gray-500 font-light">
           <a
             href="https://www.iubenda.com/privacy-policy/22647875"

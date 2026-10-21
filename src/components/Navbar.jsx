@@ -1,4 +1,12 @@
+import { useLocation } from "react-router-dom"
+
 export default function Navbar() {
+  const { pathname } = useLocation()
+
+  if (pathname === "/") {
+    return null
+  }
+
   return (
     <header className="sticky top-0 z-50 px-4 pt-4">
 

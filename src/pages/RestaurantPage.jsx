@@ -2,10 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import restaurants from "../data/restaurants";
 import { FaInstagram, FaFacebookF, FaTiktok } from "react-icons/fa";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
 
 export default function RestaurantPage() {
   const { slug } = useParams();
@@ -50,7 +46,7 @@ export default function RestaurantPage() {
           muted
           loop
           playsInline
-          poster={restaurant.gallery?.[0]}
+          poster={restaurant.cardPoster ?? restaurant.gallery?.[0]}
           preload="metadata"
           className="absolute inset-0 w-full h-full object-cover bg-black"
         >
@@ -60,16 +56,26 @@ export default function RestaurantPage() {
         <Link to="/" className="glass-panel absolute top-4 left-4 z-20 px-4 py-2 rounded-full text-xs font-medium hover:bg-white/10 transition-colors">
           ← Home
         </Link>
-        <div className="relative z-10 p-4 md:p-6 w-full animate-slide-up">
-          <p className="uppercase tracking-[3px] text-amber-500 font-medium text-xs mb-2">
-            Verona
-          </p>
-          <h1 className="text-hero-mobile text-hero-desktop font-semibold leading-tight tracking-tight mb-2">
-            {restaurant.name}
-          </h1>
-          <p className="text-sm md:text-lg text-gray-300 font-light leading-relaxed max-w-md">
-            {restaurant.description}
-          </p>
+        <div className="relative z-10 flex w-full animate-slide-up items-end justify-between gap-4 p-4 md:p-6">
+          <div>
+            <p className="uppercase tracking-[3px] text-amber-500 font-medium text-xs mb-2">
+              Verona
+            </p>
+            <h1 className="text-hero-mobile text-hero-desktop font-semibold leading-tight tracking-tight mb-2">
+              {restaurant.name}
+            </h1>
+            <p className="font-display text-sm md:text-lg text-gray-300 font-light leading-relaxed max-w-md">
+              {restaurant.description}
+            </p>
+          </div>
+
+          {(restaurant.instagram || restaurant.facebook || restaurant.tiktok) && (
+            <div className="mb-7 flex shrink-0 items-center gap-4 text-xl md:mb-9 md:text-2xl">
+              {restaurant.instagram && <a href={restaurant.instagram} target="_blank" rel="noopener noreferrer" aria-label={`${restaurant.name} su Instagram`} className="text-white/75 transition-colors hover:text-amber-400"><FaInstagram /></a>}
+              {restaurant.facebook && <a href={restaurant.facebook} target="_blank" rel="noopener noreferrer" aria-label={`${restaurant.name} su Facebook`} className="text-white/75 transition-colors hover:text-amber-400"><FaFacebookF /></a>}
+              {restaurant.tiktok && <a href={restaurant.tiktok} target="_blank" rel="noopener noreferrer" aria-label={`${restaurant.name} su TikTok`} className="text-white/75 transition-colors hover:text-amber-400"><FaTiktok /></a>}
+            </div>
+          )}
         </div>
       </section>
 
@@ -93,13 +99,6 @@ export default function RestaurantPage() {
               <p className="text-sm whitespace-pre-line leading-relaxed font-light text-gray-300">{restaurant.hours}</p>
             )}
           </div>
-          {(restaurant.instagram || restaurant.facebook || restaurant.tiktok) && (
-            <div className="flex items-end justify-right gap-4">
-              {restaurant.instagram && <a href={restaurant.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition text-lg"><FaInstagram /></a>}
-              {restaurant.facebook && <a href={restaurant.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition text-lg"><FaFacebookF /></a>}
-              {restaurant.tiktok && <a href={restaurant.tiktok} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition text-lg"><FaTiktok /></a>}
-            </div>
-          )}
           <div className="flex flex-col gap-4">
             {restaurant.whatsapp ? (
               <div className="bg-black/20 p-4 rounded-2xl border border-white/5">
@@ -191,7 +190,7 @@ export default function RestaurantPage() {
           alt={restaurant.name}
           loading="lazy"
           decoding="async"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover brightness-50"
         />
 
       </div>
@@ -218,8 +217,9 @@ export default function RestaurantPage() {
             muted
             loop
             playsInline
+            poster={restaurant.cardPoster ?? restaurant.gallery?.[0]}
             preload="metadata"
-            className="absolute inset-0 w-full h-full object-cover bg-black"
+            className="absolute inset-0 w-full h-full object-cover bg-black brightness-50"
           >
 
             <source
@@ -243,7 +243,7 @@ export default function RestaurantPage() {
                 Experience
               </p>
 
-              <h2 className="text-3xl md:text-5xl font-semibold leading-tight text-white">
+              <h2 className="font-display text-3xl md:text-5xl font-semibold leading-tight text-white">
                 {restaurant.storyText}
               </h2>
 
@@ -258,16 +258,16 @@ export default function RestaurantPage() {
     )}
 
      {/* Specialità */}
-      <section className="px-4 md:px-6 py-8 max-w-4xl mx-auto">
-        <div className="mb-6">
+      <section className="px-4 md:px-6 pt-8 pb-3 max-w-4xl mx-auto">
+        <div className="mb-3">
           <p className="uppercase tracking-[3px] text-amber-500 font-medium text-xs mb-2">Signature</p>
-          <h2 className="text-title-mobile text-title-desktop font-semibold">Specialità</h2>
+          <h2 className="font-display text-center text-title-mobile text-title-desktop font-semibold">Specialità</h2>
         </div>
-        <div className="flex flex-wrap gap-3 justify-start">
+        <div className="flex flex-col items-center gap-1">
           {restaurant.menu.map((item, index) => (
-            <div key={index} className="bg-black/20 border border-white/5 px-4 py-2 rounded-full flex items-center gap-2 transition-colors duration-300 hover:bg-black/30">
-              <span className="text-amber-600/60 font-medium text-xs">0{index + 1}</span>
-              <span className="text-sm font-medium text-white/90">{item}</span>
+            <div key={index} className="flex items-center gap-2 px-1 py-0.5">
+              <span className="text-amber-600/60 font-medium text-[8px]">0{index + 1}</span>
+              <span className="text-[8px] font-medium uppercase tracking-[1.5px] text-white/80">{item}</span>
             </div>
           ))}
         </div>
@@ -275,21 +275,31 @@ export default function RestaurantPage() {
 
       {/* Gallery */}
       {restaurant.gallery && (
-        <section className="px-4 md:px-6 py-8 max-w-4xl mx-auto">
+        <section className="px-4 md:px-6 pt-3 pb-8 max-w-4xl mx-auto">
           <p className="uppercase tracking-[3px] text-amber-500 font-medium text-xs mb-4">Galleria</p>
-          <Swiper modules={[Pagination]} spaceBetween={10} slidesPerView={1} pagination={{ clickable: true }} className="w-full">
+          <div className="grid auto-rows-[72px] grid-cols-6 grid-flow-dense overflow-hidden sm:auto-rows-[100px] md:auto-rows-[120px]">
             {restaurant.gallery.map((img, index) => (
-              <SwiperSlide key={index}>
-                <img
-                  src={img}
-                  alt={`${restaurant.name} ${index + 1}`}
-                  loading={index === 0 ? "eager" : "lazy"}
-                  decoding="async"
-                  className="w-full h-100 md:h-80 object-cover rounded-xl"
-                />
-              </SwiperSlide>
+              <img
+                key={index}
+                src={img}
+                alt={`${restaurant.name} ${index + 1}`}
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
+                className={`h-full w-full object-cover brightness-50 ${
+                  restaurant.gallery.length === 2
+                    ? index === 0
+                      ? "col-span-4 row-span-3"
+                      : "col-span-2 row-span-3"
+                    : [
+                        "col-span-4 row-span-4",
+                        "col-span-2 row-span-2",
+                        "col-span-2 row-span-2",
+                        "col-span-6 row-span-2",
+                      ][index % 4]
+                }`}
+              />
             ))}
-          </Swiper>
+          </div>
         </section>
       )}
 
@@ -297,7 +307,7 @@ export default function RestaurantPage() {
       <section className="py-12 px-4 md:px-6 max-w-4xl mx-auto">
         <div className="mb-6 text-center">
           <p className="uppercase tracking-[3px] text-amber-500 font-medium text-xs mb-2">Discover</p>
-          <h2 className="text-title-mobile text-title-desktop font-semibold">Esplora anche</h2>
+          <h2 className="font-display text-title-mobile text-title-desktop font-semibold">Esplora anche</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {restaurants.filter((r) => r.slug !== slug).map((r) => (
@@ -308,15 +318,16 @@ export default function RestaurantPage() {
                 muted
                 loop
                 playsInline
+                poster={r.cardPoster ?? r.gallery?.[0]}
                 preload="metadata"
-                className="absolute inset-0 w-full h-full object-cover bg-black"
+                className="absolute inset-0 w-full h-full object-cover bg-black brightness-50"
               >
                 <source src={r.video} type="video/mp4" />
               </video>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
               <div className="relative z-10 h-full flex items-end p-4">
                 <div>
-                  <p className="uppercase tracking-[3px] text-amber-400 font-medium text-xs mb-1">{r.description}</p>
+                  <p className="font-display uppercase tracking-[3px] text-amber-400 font-medium text-xs mb-1">{r.description}</p>
                   <h3 className="text-lg md:text-xl font-semibold">{r.name}</h3>
                 </div>
               </div>
