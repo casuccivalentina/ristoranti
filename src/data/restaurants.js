@@ -17,7 +17,7 @@ const restaurants = [
     mapsUrl: "https://www.google.com/maps/dir//La+Greca+%7C+Ristorante+Pizzeria,+V.le+Postumia,+73,+37069+Villafranca+di+Verona+VR/@45.4426624,10.9805568,14z/data=!4m8!4m7!1m0!1m5!1m1!1s0x4781de131ab9f381:0x8604d5fa617be197!2m2!1d10.8685789!2d45.3689835?entry=ttu&g_ep=EgoyMDI2MDUxMS4wIKXMDSoASAFQAw%3D%3D",
     locationImage: "/optimized/lagreca/forno-location.webp",
     facebook: "https://www.facebook.com/pizzerialagreca/?locale=it_IT",
-    instagram: "https://www.instagram.com/lagreca.villafranca/",
+    instagram: "https://www.instagram.com/lagreca.villafranca?xtok=ZnFzMzRyZWJpbHF1&utm_source=qr",
     hours: `Lun - Dom | 12:00 - 14:30 · 19:00 - 23:00`,
     menu: ["Paella", "Grigliata di cane/pesce", "Pizza con pesce"],
     storyVideo: "/lagreca/grigliata.mp4",
