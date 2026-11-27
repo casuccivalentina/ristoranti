@@ -5,7 +5,7 @@ const restaurants = [
     name: "La Greca",
     description: "Villafranca",
     video: "/lagreca/video.mp4",
-    cardPoster: "/lagreca/CGreca.jpeg",
+    cardPoster: "/optimized/lagreca/pesce.webp",
     gallery: [
       "/optimized/lagreca/pesce.webp",
       "/optimized/lagreca/paella.webp",
@@ -22,6 +22,20 @@ const restaurants = [
     menu: ["Paella", "Grigliata di cane/pesce", "Pizza con pesce"],
     storyVideo: "/lagreca/grigliata.mp4",
     storyText: "Il nostro forno a legna, ineguagliabile, è il segreto della nostra tradizione.",
+    seo: {
+      title: "La Greca | Ristorante Pizzeria a Villafranca di Verona",
+      description: "Scopri La Greca, ristorante pizzeria in Viale Postumia 73 a Villafranca di Verona. Consulta il menù, gli orari e le indicazioni stradali.",
+      image: "/og/la-greca.jpg",
+      imageAlt: "Specialità di pesce del ristorante La Greca a Villafranca di Verona",
+      address: {
+        streetAddress: "Viale Postumia, 73",
+        postalCode: "37069",
+        addressLocality: "Villafranca di Verona",
+        addressRegion: "VR",
+        addressCountry: "IT",
+      },
+      openingHours: ["Mo-Su 12:00-14:30", "Mo-Su 19:00-23:00"],
+    },
   },
   {
     id: 3,
@@ -29,7 +43,7 @@ const restaurants = [
     name: "La Vecchia Lira",
     description: "Verona",
     video: "/vecchialira/40cm.mp4",
-    cardPoster: "/vecchialira/CVL.jpeg",
+    cardPoster: "/optimized/vecchialira/locale.webp",
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
     gallery: [
       "/optimized/vecchialira/pizzacapr.webp",
@@ -48,6 +62,20 @@ const restaurants = [
     menu: ["Pizza 40cm", "Carbonara", "Galletto con patate", "Pizza margherita"],
     storyVideo: "/vecchialira/pizze.mp4",
     storyText: "il calore del forno, il ritmo della cucina",
+    seo: {
+      title: "La Vecchia Lira | Ristorante Pizzeria a San Massimo, Verona",
+      description: "Scopri La Vecchia Lira, ristorante pizzeria in Via Calabria 7 a San Massimo, Verona. Consulta il menù, gli orari e le indicazioni stradali.",
+      image: "/og/la-vecchia-lira.jpg",
+      imageAlt: "Pizza della Vecchia Lira a San Massimo, Verona",
+      address: {
+        streetAddress: "Via Calabria, 7",
+        postalCode: "37139",
+        addressLocality: "Verona",
+        addressRegion: "VR",
+        addressCountry: "IT",
+      },
+      openingHours: ["Mo-Su 12:00-14:30", "Mo-Su 19:00-23:30"],
+    },
   },
 ];
 

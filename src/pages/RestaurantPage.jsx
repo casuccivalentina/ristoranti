@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import restaurants from "../data/restaurants";
 import { FaInstagram, FaFacebookF, FaTiktok } from "react-icons/fa";
+import SEO from "../components/SEO";
+import ViewportVideo from "../components/ViewportVideo";
+
+const SITE_URL = "https://www.scaligerafood.it";
 
 export default function RestaurantPage() {
   const { slug } = useParams();
@@ -30,18 +34,54 @@ export default function RestaurantPage() {
 
   if (!restaurant) {
     return (
-      <div className="min-h-screen bg-black/95 text-white flex items-center justify-center">
-        <h1>Ristorante non trovato</h1>
-      </div>
+      <main className="min-h-screen bg-black/95 text-white flex flex-col gap-5 items-center justify-center px-6 text-center">
+        <SEO
+          title="Pagina non trovata | Scaligera Food"
+          description="La pagina richiesta non è disponibile. Torna alla homepage di Scaligera Food."
+          path={`/${slug ?? "404"}`}
+          robots="noindex, nofollow"
+        />
+        <h1 className="font-display text-4xl font-semibold">Pagina non trovata</h1>
+        <Link to="/" className="rounded-full bg-white px-5 py-3 text-sm font-medium text-black">Torna alla home</Link>
+      </main>
     );
   }
 
+  const pageUrl = `${SITE_URL}/${restaurant.slug}`;
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "@id": `${pageUrl}#restaurant`,
+    name: restaurant.name,
+    url: pageUrl,
+    image: new URL(restaurant.seo.image, SITE_URL).href,
+    telephone: restaurant.phone,
+    address: {
+      "@type": "PostalAddress",
+      ...restaurant.seo.address,
+    },
+    openingHours: restaurant.seo.openingHours,
+    hasMenu: new URL(restaurant.menuPdf, SITE_URL).href,
+    sameAs: [restaurant.facebook, restaurant.instagram].filter(Boolean),
+  };
+
   return (
     <main className="bg-black/95 text-white overflow-hidden">
+      <SEO
+        title={restaurant.seo.title}
+        description={restaurant.seo.description}
+        path={`/${restaurant.slug}`}
+        image={restaurant.seo.image}
+        imageAlt={restaurant.seo.imageAlt}
+        type="restaurant"
+        structuredData={structuredData}
+      />
       {/* Hero */}
       <section className="relative h-[65vh] md:h-[75vh] flex items-end animate-fade-in rounded-b-2xl overflow-hidden mx-2 md:mx-4 mt-2">
-        <video
+        <ViewportVideo
           key={restaurant.video}
+          src={restaurant.video}
+          eager
           autoPlay
           muted
           loop
@@ -49,9 +89,8 @@ export default function RestaurantPage() {
           poster={restaurant.cardPoster ?? restaurant.gallery?.[0]}
           preload="metadata"
           className="absolute inset-0 w-full h-full object-cover bg-black"
-        >
-          <source src={restaurant.video} type="video/mp4" />
-        </video>
+          aria-hidden="true"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
         <Link to="/" className="glass-panel absolute top-4 left-4 z-20 px-4 py-2 rounded-full text-xs font-medium hover:bg-white/10 transition-colors">
           ← Home
@@ -187,7 +226,7 @@ export default function RestaurantPage() {
 
         <img
           src={restaurant.locationImage}
-          alt={restaurant.name}
+          alt={`Sede di ${restaurant.name} a ${restaurant.description}`}
           loading="lazy"
           decoding="async"
           className="w-full h-full object-cover brightness-50"
@@ -211,8 +250,9 @@ export default function RestaurantPage() {
 
             {/* VIDEO */}
 
-          <video
-            key={restaurant.video}
+          <ViewportVideo
+            key={restaurant.storyVideo}
+            src={restaurant.storyVideo}
             autoPlay
             muted
             loop
@@ -220,14 +260,8 @@ export default function RestaurantPage() {
             poster={restaurant.cardPoster ?? restaurant.gallery?.[0]}
             preload="metadata"
             className="absolute inset-0 w-full h-full object-cover bg-black brightness-50"
-          >
-
-            <source
-              src={restaurant.storyVideo}
-              type="video/mp4"
-            />
-
-          </video>
+            aria-hidden="true"
+          />
 
           {/* OVERLAY */}
 
@@ -282,7 +316,7 @@ export default function RestaurantPage() {
               <img
                 key={index}
                 src={img}
-                alt={`${restaurant.name} ${index + 1}`}
+                alt={`${restaurant.menu[index] ?? "Specialità"} di ${restaurant.name} a ${restaurant.description}`}
                 loading={index === 0 ? "eager" : "lazy"}
                 decoding="async"
                 className={`h-full w-full object-cover brightness-50 ${
@@ -312,8 +346,9 @@ export default function RestaurantPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {restaurants.filter((r) => r.slug !== slug).map((r) => (
             <Link key={r.id} to={`/${r.slug}`} className="group relative h-40 md:h-48 rounded-xl overflow-hidden block">
-              <video
+              <ViewportVideo
                 key={r.video}
+                src={r.video}
                 autoPlay
                 muted
                 loop
@@ -321,9 +356,8 @@ export default function RestaurantPage() {
                 poster={r.cardPoster ?? r.gallery?.[0]}
                 preload="metadata"
                 className="absolute inset-0 w-full h-full object-cover bg-black brightness-50"
-              >
-                <source src={r.video} type="video/mp4" />
-              </video>
+                aria-hidden="true"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
               <div className="relative z-10 h-full flex items-end p-4">
                 <div>

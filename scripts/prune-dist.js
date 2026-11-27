@@ -17,6 +17,7 @@ async function removeOriginalImages(dir) {
       const entryPath = path.join(dir, entry.name)
 
       if (entry.isDirectory()) {
+        if (entryPath === path.join(distDir, "og")) return
         await removeOriginalImages(entryPath)
         return
       }

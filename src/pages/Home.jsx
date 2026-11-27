@@ -1,9 +1,20 @@
 import { Link } from "react-router-dom"
 import restaurants from "../data/restaurants"
+import SEO from "../components/SEO"
+import ViewportVideo from "../components/ViewportVideo"
 
 export default function Home() {
   return (
     <main className="relative min-h-svh overflow-hidden">
+
+    <SEO
+      title="Scaligera Food | Ristoranti a Verona e Villafranca"
+      description="Scopri La Greca e La Vecchia Lira, due esperienze gastronomiche tra Verona e Villafranca. Consulta i menù e prenota il tuo tavolo."
+      path="/"
+      image="/og/scaligera-food.jpg"
+      imageAlt="Specialità di Scaligera Food a Verona e Villafranca di Verona"
+    />
+
       <div className="pointer-events-none absolute inset-x-0 top-0 z-30 px-5 pt-9 text-center md:pt-12">
         <div className="animate-slide-up">
           <p className="mb-4 text-xs font-medium uppercase tracking-[6px] text-amber-500/80 md:text-sm">
@@ -24,7 +35,9 @@ export default function Home() {
             to={`/${restaurant.slug}`}
             className="group relative min-h-svh overflow-hidden"
           >
-            <video
+            <ViewportVideo
+              src={restaurant.video}
+              eager
               autoPlay
               muted
               loop
@@ -32,9 +45,8 @@ export default function Home() {
               preload="metadata"
               poster={restaurant.cardPoster ?? restaurant.gallery?.[0]}
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-            >
-              <source src={restaurant.video} type="video/mp4" />
-            </video>
+              aria-hidden="true"
+            />
 
             <div className="absolute inset-0 bg-black/65 transition-colors duration-500 group-hover:bg-black/60" />
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black/70" />
