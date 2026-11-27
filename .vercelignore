@@ -1,4 +1,5 @@
 public/**/*.jpg
+!public/og/*.jpg
 public/**/*.jpeg
 public/**/*.png
 public/**/*.JPG
