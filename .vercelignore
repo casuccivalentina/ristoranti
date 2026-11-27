@@ -1,8 +1,15 @@
-public/**/*.jpg
-!public/og/*.jpg
-public/**/*.jpeg
-public/**/*.png
-public/**/*.JPG
+public/doppiozero/**/*.jpg
+public/doppiozero/**/*.jpeg
+public/doppiozero/**/*.png
+public/doppiozero/**/*.JPG
+public/lagreca/**/*.jpg
+public/lagreca/**/*.jpeg
+public/lagreca/**/*.png
+public/lagreca/**/*.JPG
+public/vecchialira/**/*.jpg
+public/vecchialira/**/*.jpeg
+public/vecchialira/**/*.png
+public/vecchialira/**/*.JPG
 public/vecchialira/video.mp4
 
 !public/optimized/**/*.webp
