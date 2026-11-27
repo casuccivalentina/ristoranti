@@ -6,6 +6,7 @@ const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const distDir = path.join(rootDir, "dist")
 const template = await readFile(path.join(distDir, "index.html"), "utf8")
 const siteUrl = "https://www.scaligerafood.it"
+const homeTitle = "Scaligera Food | Ristoranti a Verona e Villafranca"
 
 const pages = [
   {
@@ -40,6 +41,24 @@ const pages = [
 
 function escapeHtml(value) {
   return value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+}
+
+function validateTitle(html, expectedTitle, label) {
+  const titles = [...html.matchAll(/<title\b([^>]*)>([^<]*)<\/title>/g)]
+
+  if (titles.length !== 1) {
+    throw new Error(`${label}: expected exactly one title, found ${titles.length}`)
+  }
+
+  const [, attributes, title] = titles[0]
+
+  if (!/\bdata-seo-static\b/.test(attributes)) {
+    throw new Error(`${label}: title is missing data-seo-static`)
+  }
+
+  if (title !== escapeHtml(expectedTitle)) {
+    throw new Error(`${label}: expected title "${expectedTitle}", found "${title}"`)
+  }
 }
 
 function render(page) {
@@ -80,17 +99,22 @@ function render(page) {
   const content = `<main><article><h1>${escapeHtml(page.name)}</h1><p>${escapeHtml(page.description)}</p><address>${escapeHtml(page.address)}</address><p><a href="tel:${page.phone.replaceAll(" ", "")}">${escapeHtml(page.phone)}</a></p></article></main>`
 
   return template
-    .replace(/<title>.*?<\/title>/, `<title>${escapeHtml(page.title)}</title>`)
+    .replace(/<title\b[^>]*>.*?<\/title>/, `<title data-seo-static>${escapeHtml(page.title)}</title>`)
     .replace(/<meta data-seo-static name="description" content="[^"]*"\s*\/>/, `<meta data-seo-static name="description" content="${escapeHtml(page.description)}" />`)
     .replace(/\s*<link data-seo-static rel="canonical"[\s\S]*?<meta data-seo-static name="twitter:image:alt"[^>]*\/?>/, "")
     .replace("</head>", `${head}\n  </head>`)
     .replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${content}</div>`)
 }
 
+validateTitle(template, homeTitle, "home")
+
 for (const page of pages) {
   const outputDir = path.join(distDir, page.path)
+  const html = render(page)
+
+  validateTitle(html, page.title, page.path)
   await mkdir(outputDir, { recursive: true })
-  await writeFile(path.join(outputDir, "index.html"), render(page))
+  await writeFile(path.join(outputDir, "index.html"), html)
 }
 
 console.log(`Prerendered ${pages.length} restaurant pages`)
